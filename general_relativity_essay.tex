@@ -1,0 +1,239 @@
+\documentclass[14pt]{extarticle}
+
+\marginparwidth 0.5in 
+\oddsidemargin 0.25in 
+\evensidemargin 0.25in 
+\marginparsep 0.25in
+\topmargin 0.25in 
+\textwidth 6in \textheight 8 in
+
+% Extra font sizes
+% 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt.
+\usepackage{extsizes}
+% Unicode support
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+% Hyperlinks
+\usepackage{hyperref}
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+% \usepackage{physics}
+% \usepackage{commath}
+% Quotations ""
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+
+% \newcommand{\christoffeltwo}[2]{\Gamma^{#1}_{\hphantom{#1}#2}}
+\newcommand{\christoffeltwo}[2]{\Gamma^{#1}_{#2}}
+\newcommand{\christoffelone}[2]{\Gamma_{#1,#2}}
+\newcommand{\reimann}[2]{R^{#1}_{#2}}
+\newcommand{\ricci}[2]{R_{#1#2}}
+\newcommand{\covtwo}[4]{\nabla_{#3} \nabla_{#4} {#1}_{#2}}
+
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Ric}{Ric}
+
+% $g^{\alpha\beta}g^{\gamma\delta}R_{\alpha\mu\gamma\nu}=R^{\beta\;\delta}_{\;\mu\;\nu}$
+
+% $g^{\alpha\beta}g^{\gamma\delta}R_{\alpha\mu\gamma\nu}
+    % =\tensor{R}{^\beta_\mu^\delta_\nu}$
+
+\begin{document}
+\author{Mateen Ulhaq}
+\title{Essay on Einstein's Paper}
+\maketitle
+
+% \section{Instructions}
+
+% Write an essay where you discuss the General Theory of Relativity, along Einstein’s own review paper from 1916. In particular, relate the concepts we learned in class with the tools developed and presented by Einstein in the paper. Some of Einstein’s notations differ from the modern notations in Kuhnel, so make sure you make the correct connections.
+% I will be expecting that your essay covers at least up to (and including) Section 14 of the paper, where the field equations in the absence of matter are discussed and presented. I am particularly keen on you touching upon concepts talked about in Sections 9, 12, 13 and 14.
+% Essays are limited to 5 pages (based on font 12, Times New Roman) and must be typed with a word processor. Due: Friday April 7 at 5:00pm, hard copy to be dropped in homework box (do not send by email).
+
+% Geodesics, Riemann, Ricci?
+
+% \section{Introduction}
+\begin{abstract}
+This is an essay on Einstein's 1916 review paper, "The Foundation of the Generalized Theory of Relativity". An English translation may be read online here: \href{https://en.wikisource.org/wiki/The_Foundation_of_the_Generalised_Theory_of_Relativity}{[link]}.
+% \emph{For legibility}, this report is in size 14 font, but does not exceed the 5 page limit if inscribed in size 12 font.
+\end{abstract}
+
+% \section{Physics}
+
+% Discussion on the physics setup.
+
+% \section{Other}
+
+Einstein begins by considering the physical motivations behind the Theory of General Relativity. He does this through descriptions of thought experiments and empirical evidence.
+
+% Special relativity flat?
+
+% Minkowski metric?
+
+Next, he spends a decent amount of his paper establishing the mathematical background required by introducing tensors. He introduces the contravariant transformation law, defined in the Einstein summation convention as:
+
+\[dx_\sigma' = \frac{\partial x_\sigma'}{\partial x_\nu} dx_\nu\]
+
+\noindent
+where $dx_\sigma$ and $dx_\sigma'$ represent an arbitrary coordinate basis which transforms in the manner of contravariant vectors, typically upper indexed in the manner $A^\nu$. Transformation of a general contravariant tensor over the index sets $\{i_k\}_{k=1 \ldots n}$ and $\{j_k\}_{k=1 \ldots n}$ is given:
+
+\[A'^{j_1 \ldots j_n} =
+\frac{\partial x'_{j_1}}{\partial x_{i_1}}
+\ \ldots \ 
+\frac{\partial x'_{j_n}}{\partial x_{i_n}}
+A^{i_1 \ldots i_n}\]
+
+He then expresses the corresponding covariant transformation, defined in the opposite manner as:
+
+\[A'_{j_1 \ldots j_n} =
+\frac{\partial x_{i_1}}{\partial x'_{j_1}}
+\ \ldots \ 
+\frac{\partial x_{i_n}}{\partial x'_{j_n}}
+A_{i_1 \ldots i_n}\]
+
+Mixed tensor transformations may also be performed in a similar manner, while ensuring a "conservation" of contravariant (upper) and covariant (lower) indices.
+
+Contravariant and covariant indices hold specific meanings in different contexts. For example, they can be used to define "inverses", à la $g_{ij} g^{jk} = \delta_i^k$, or as the duals of each other.
+
+Einstein also notes that symmetrical and anti-symmetrical tensors, which he uses later in the paper, are independent from choice of coordinates ("system of reference"). Einstein omits this proof for anti-symmetrical tensors:
+
+\[
+A'^{\sigma \tau }
+={\frac {\partial x'_{\sigma }}{\partial x_{\mu }}}{\frac {\partial x'_{\tau }}{\partial x_{\nu }}}A^{\mu \nu }
+={\frac {\partial x'_{\sigma }}{\partial x_{\mu }}}{\frac {\partial x'_{\tau }}{\partial x_{\nu }}} (-A^{\nu \mu })
+=-{\frac {\partial x'_{\tau }}{\partial x_{\mu }}}{\frac {\partial x'_{\sigma }}{\partial x_{\nu }}}A^{\mu \nu }
+=-A'^{\tau \sigma }
+\]
+
+\noindent
+but it is nearly identical to the one for symmetrical tensors.
+
+Next, Einstein walks through multiplication in tensors, which are simply combinations of indices. He also mentions the mechanic of contraction over an upper and lower index, which is simply a summation. The Einstein summation notation convention becomes useful here in defining these contractions without excessive summation signs. For instance, he forms a scalar (0 order tensor) from a (2,2) tensor through a trace-like operation,
+
+\[A = A_{\alpha \beta }^{\alpha \beta}\]
+
+\noindent
+an idea which is later used to define the scalar curvature. (In our course, we use the notation $S = \Tr_g \Ric = g^{ij} R_{ij} = R^j_j$.)
+
+Then, he introduces the metric tensor $g_{\mu\nu}$ to describe the "linear element"
+
+\[ds^2 = g_{\mu\nu} dx_\mu dx_\nu\]
+
+He also introduces its inverse metric tensor $g^{\mu\nu}$, which is of course defined as simply the contraction over a common index $g_{ij} g^{jk} = \delta_i^k$, analogous to the inverse matrix of linear algebra.
+
+Then, he introduces a volume element used in his theory, $\sqrt{-g}d\tau$, which is shown to be invariant of choice of coordinates, where ${g = \det g_{\mu\nu}}$.
+
+% Volume invariant
+
+% \section{Section 9}
+
+% See Sean Carroll's notes for good explanation...!!!
+
+In section 9, Einstein derives the familiar geodesic equations. He does this by considering a geodesic as a path which is the stationary point on the action (i.e., extremum of the functional)
+
+\[\int_{P_1}^{P_2} d\tau\]
+
+\noindent
+where $d\tau$ is proper time, which can be related to Minkowski metric by $d\tau = dt^2 - dx^2 - dy^2 - dz^2$. (Einstein uses the notation $ds \equiv -d\tau$ so we will use this for convenience.) His motivation for doing this is the idea that objects follow geodesic paths in space-time, where proper time is locally minimized.
+
+Then, he defines a parametrization $\lambda = \lambda(x_1, x_2, x_3, x_4)$ on any curves connecting the desired endpoints $\lambda_1 = \lambda(P_1)$ and $\lambda_2 = \lambda(P_2)$. Then, he makes the substitution $w \ d\lambda = ds$, where
+
+\[w^{2}
+= \left( \frac{ds}{d\lambda} \right)^2
+= \left(\frac{\sqrt{g_{\mu \nu} dx_\mu dx_\nu}}{d\lambda}\right)^2
+= g_{\mu \nu }{\frac {dx_{\mu }}{d\lambda }}{\frac {dx_{\nu }}{d\lambda }}\]
+
+After all this, he takes the variation of the functional to 0:
+
+\[0 = \delta \left\{ \int \limits _{\lambda _{1}}^{\lambda _{2}} w\ d\lambda \right\}
+= \int \limits _{\lambda _{1}}^{\lambda _{2}}\delta w\ d\lambda\]
+
+Computing the variation on $w$ through the product rule provides:
+
+\[\delta w={\frac {1}{w}}\left\{{\frac {1}{2}}{\frac {\partial g_{\mu \nu }}{\partial x_{\sigma }}}{\frac {dx_{\mu }}{d\lambda }}{\frac {dx_{\nu }}{d\lambda }}\delta x_{\sigma }+g_{\mu \nu }{\frac {dx_{\mu }}{d\lambda }} {\frac {\delta dx_{\nu }}{d\lambda }}\right\}\]
+
+Here, he integrates with respect to $\lambda$, argues that the choice of $\delta x_\sigma$ is arbitrary in the resulting functional
+
+\[\int \limits _{\lambda _{1}}^{\lambda _{2}}d\lambda \ \varkappa _{\sigma }\delta x_{\sigma }=0\]
+
+\noindent
+and so $\varkappa_{\sigma}$ must vanish to 0. This gives the geodesic equations:
+
+\[0 = \varkappa_{\sigma} = {\frac {d}{d\lambda }}\left\{{\frac {g_{\mu \nu }}{w}}{\frac {dx_{\mu }}{\partial \lambda }}\right\}-{\frac {1}{2w}}{\frac {\partial g_{\mu \nu }}{\partial x_{\sigma }}}{\frac {dx_{\mu }}{\partial \lambda }}{\frac {dx_{\nu }}{\partial \lambda }}
+\]
+
+\noindent
+which may be rewritten by choosing $\lambda$ to be arc length of the geodesic, implying $w = \sqrt{\frac{ds}{d\lambda}} = 1$, thus giving the geodesic equations in a convenient notation:
+
+\[g_{\alpha \sigma }{\frac {d^{2}x_{\alpha }}{ds^{2}}}+
+% \left[{\mu \nu  \atop \sigma }\right]
+\christoffelone{\mu\nu}{\sigma}
+{\frac {dx_{\mu }}{ds}}{\frac {dx_{\nu }}{ds}} = 0\]
+
+In our course, we defined a curve $c(s)$ parametrized by arc length, and took perturbations on it $c_t(s)$ in a family of curves $\mathscr{C}(s, t)$ of arc length $L$ where $\mathscr{C}(s, 0) = c(s)$ in the interval $s \in [0, L]$ and with endpoints defined in a similar manner to above, ${\mathscr{C}(0,t) = P_1}$ and ${\mathscr{C}(L,t) = P_2}$. Then, we considered the arc length functional:
+
+\[ \int_0^L \left| \frac{\partial c_t}{\partial s} \right| ds \]
+
+\noindent
+and took its variation to 0 by taking the functional derivative ${\frac{d}{dt} \cdot |_{t=0}}$ on the perturbation parameter $t$. From this calculation, we too obtained the equation for geodesics.
+
+After all this, Einstein defines a notational convenience --- the Christoffel symbols of the first kind, which are given by:
+
+\[ \christoffelone{\mu\nu}{\sigma} \equiv \left[{\mu \nu \atop \sigma}\right] = {\frac {1}{2}}\left({\frac {\partial g_{\mu \sigma }}{\partial x_{\nu }}}+{\frac {\partial g_{\nu \sigma }}{\partial x_{\mu }}}-{\frac {\partial g_{\mu \nu }}{\partial x_{\sigma }}}\right) \]
+
+He also defines Christoffel symbols of the second kind as:
+
+\[\christoffeltwo{\tau}{\mu\nu} \equiv \left\{{\mu \nu \atop \tau}\right\} = g^{\tau \sigma} \christoffelone{\mu\nu}{\sigma}\]
+
+% \section{Section 10, 11}
+
+% ...
+
+% \section{Section 12}
+
+In section 12, Einstein introduces the Riemann curvature tensor. He does this by defining it as a commutator of covariant derivatives:
+
+\[\covtwo{A}{\mu}{\sigma}{\tau} - \covtwo{A}{\mu}{\tau}{\sigma} = \reimann{\varrho}{\mu\sigma\tau} A_\varrho\]
+
+% This measures the torsionness...? Actually, it measures how much geodesics curve
+
+Note that the notation Einstein uses for a covariant derivative is equivalent to the modern notation we use in this course in the following manner:
+
+\[\covtwo{A}{\mu}{\sigma}{\tau} \equiv A_{\mu\sigma\tau}\]
+
+By contracting the contravariant index with the 2nd covariant index of the Riemann curvature tensor, he obtains the Ricci tensor:
+
+\[\ricci{\mu}{\nu} \equiv \reimann{\sigma}{\mu\sigma\tau} \]
+
+% \section{Section 13}
+
+In Section 13, Einstein makes the realization that objects (in the form of material points) travel in paths given by geodesics, which we made reference to in our discussion on Section 9. He writes the equation of motion in familiar notation:
+
+\[{\frac {d^{2}x_{\tau }}{ds^{2}}}=\christoffeltwo{\tau}{\mu\nu}{\frac {dx_{\mu }}{ds}}{\frac {dx_{\nu }}{ds}}\]
+
+He also notes that if the Christoffel coefficients vanish $\christoffeltwo{\tau}{\mu\nu} = 0$, as in the case of there being no gravitational field acting upon the point mass, then the point moves uniformly in a "straight line" (in the Euclidean sense). Thus, $\christoffeltwo{\tau}{\mu\nu}$ are described to be the components of the gravitational field.
+
+% \section{Section 14}
+
+In Section 14, Einstein notes that many of the equations of motion are redundant in a gravitational field free of matter ($\Ric = 0$), reducing them down to "10 equations of 10 quantities $g_{\mu\nu}$" through symmetry.
+
+These can then be used to show consistency of the theory of General Relativity with Newtonian gravitation and the perihelion-motion observations of Mercury. He states that these confirm that his theory must indeed be correct.
+
+% \section{Conclusions}
+
+% ...
+
+\begin{thebibliography}{9}
+
+\bibitem{EinsteinPaper}
+A. Einstein, \emph{The Foundation of the Generalised Theory of Relativity}, 1916.
+
+\end{thebibliography}
+
+Some equations used in this essay are reproduced from Einstein's 1916 review paper, "The Foundation of the Generalised Theory of Relativity" for illustration purposes.
+
+
+\end{document}
